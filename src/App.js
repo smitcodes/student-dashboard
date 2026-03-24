@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import CourseList from "./components/CourseList";
+import ProductList from "./components/ProductList";
 
 function App() {
+  const [view, setView] = useState("courses");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Navbar */}
+      <nav className="navbar navbar-dark bg-dark">
+        <div className="container-fluid">
+          <span className="navbar-brand">Smart Dashboard</span>
+
+          <div>
+            <button
+              className="btn btn-outline-light me-2"
+              onClick={() => setView("courses")}
+            >
+              Courses
+            </button>
+
+            <button
+              className="btn btn-outline-light"
+              onClick={() => setView("products")}
+            >
+              Inventory
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Conditional Rendering */}
+      {view === "courses" ? <CourseList /> : <ProductList />}
     </div>
   );
 }
